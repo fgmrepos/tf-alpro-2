@@ -23,5 +23,5 @@ public interface IStack<E> {
 
     public boolean isEmpty();
 
-    public void clean();
+    public void clear();
 }
