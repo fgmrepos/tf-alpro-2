@@ -11,5 +11,6 @@ package com.pucrs.simulaemula.util;
  * @author Felipe
  */
 public enum CategoriaCliente {
-    
+    AUTOESCOLA, 
+    SUPERMERCADO;
 }
