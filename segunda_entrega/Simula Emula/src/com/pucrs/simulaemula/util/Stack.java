@@ -16,52 +16,97 @@ import java.util.EmptyStackException;
 public class Stack<E> implements IStack<E> {
 
    
-    private static final class Node<E> {
-
-        public E element;
-        public Stack.Node<E> next;
-
-        public Node(E e) {
-            element = e;
-            next = null;
-        }
-    }
-
-    private Stack.Node<E> head;
-    private Stack.Node<E> tail;
+    private Node<E> header;
+    // Referência para o sentinela de fim da lista encadeada.
+    private Node<E> trailer;
+    // Contador do número de elementos da lista.
     private int count;
 
+     private class Node<T> {
+        public T element;
+        public Node<T> next;
+        public Node<T> prev;
+        public Node(T e) {
+            element = e;
+            next = null;
+            prev = null;
+        }
+    }
+     /*Construtor*/
+     public Stack(){
+      header = new Node<>(null);
+        trailer = new Node<>(null);
+        header.next = trailer;
+        trailer.prev = header;
+        count = 0;
+     }
+     /*Adiciona um elemento na pilha, sempre na primeira posíção*/
     @Override
     public void push(E element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Node <E> n = new Node<>(element);
+     
+      /* if(size()==0){
+           header.next = n;
+           trailer.prev = n;
+           n.prev = header;
+           n.next = trailer;
+       }*/
+       
+       n.next = header.next.prev;
+       header.next.prev = n;
+       header.next = n;
+       n.prev = header;
+       
+       count++;
+        
     }
-    
+    //Eliminando arquivos
     @Override
     public E pop() throws EmptyStackException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (isEmpty()== true){
+        throw new EmptyStackException();
+        }
+        Node <E> aux = header.next;
+        
+        E elem =  header.next.element;
+                       
+        header.next = aux.next;
+        aux.next.prev=header;
+        count--;
+        
+        
+        return elem;
     }
-    
+    /*Retorna o primeiro elemento da pilha, porém não o remove*/
     @Override
     public E top() throws EmptyStackException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (isEmpty()== true){
+        throw new EmptyStackException();
+        }
+         Node<E> aux = header.next;
+        
+        E elem = aux.element;
+                        
+        return elem;
+        
     }
     
+    /*Retorna o seu tamanho*/
     @Override
     public int size() {
        return count;
     }
-    
+    /*Retorna se a pilha está vazia*/
     @Override
     public boolean isEmpty() {
-        if(count==0){
-            return true;
-        }
-        return false;
+       return (count==0);
     }
-    
+    /*Limpa os conteúdos da pilha*/
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        header.next = null;
+        trailer.prev = null;
+        count = 0;
     }
     
 }
