@@ -14,10 +14,13 @@ public class Caixa {
     private Cliente clienteAtual;
     private int numeroAtendidos;
     private int etapa;
+    private Cliente tempo;
 
     public Caixa() {
         clienteAtual = null;
         numeroAtendidos = 0;
+        tempo = null;
+        
     }
 
     public void atenderNovoCliente(Cliente c) {
@@ -50,5 +53,12 @@ public class Caixa {
     public void setEtapa(int value) {
         this.etapa = value;
     }
+    
+     /*Método criado para retornar tempo medio de atendimento por caixa*/
+    public double getMediaAtendimento(){
+        
+        double media = tempo.getTempoAtendimento()/numeroAtendidos;
+        return media;
+    } 
 
 }
