@@ -6,8 +6,6 @@
 
 package com.pucrs.simulaemula.model;
 
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  *
@@ -51,8 +49,8 @@ public class Estatistica {
     
     public double variancia(){
         
-        double x1 = 1 / (double) caixa.clientesAtendidos.size() - 1;
-        double x2 = caixa.getSomaNumerosAtendidosAoQuadrado() - (Math.pow(caixa.getNumeroAtendidos(),2)/ Double.valueOf(caixa.clientesAtendidos.size()));
+        double x1 = 1 / (double) caixa.getClientesAtendidos().size() - 1;
+        double x2 = caixa.getSomaNumerosAtendidosAoQuadrado() - (Math.pow(caixa.getNumeroAtendidos(),2)/ Double.valueOf(caixa.getClientesAtendidos().size()));
         return x1 * x2;
     }
     

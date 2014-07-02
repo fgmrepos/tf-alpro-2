@@ -36,6 +36,7 @@ public class Caixa {
         Cliente c = clienteAtual;
         clienteAtual = null;
         numeroAtendidos++;
+        clientesAtendidos.add(c);
         return c;
     }
 
@@ -69,9 +70,8 @@ public class Caixa {
         return media;
     } 
     
-    public void addCliente(Cliente c){
-        clientesAtendidos.add(c);
-        
+    public ArrayList<Cliente> getClientesAtendidos(){
+        return clientesAtendidos;
     }
 }
 
