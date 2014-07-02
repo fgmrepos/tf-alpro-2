@@ -5,6 +5,8 @@
  */
 package com.pucrs.simulaemula.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Felipe
@@ -16,13 +18,16 @@ public class Caixa {
     private int etapa;
     private Cliente tempo;
 
+        
+    public ArrayList<Cliente> clientesAtendidos = new ArrayList<Cliente>(); 
+
     public Caixa() {
         clienteAtual = null;
         numeroAtendidos = 0;
         tempo = null;
         
     }
-
+    
     public void atenderNovoCliente(Cliente c) {
         clienteAtual = c;
     }
@@ -45,7 +50,10 @@ public class Caixa {
     public int getNumeroAtendidos() {
         return numeroAtendidos;
     }
-
+    
+    public double getSomaNumerosAtendidosAoQuadrado(){
+      return Math.pow(numeroAtendidos, 2);
+    }
     public int getEtapa() {
         return this.etapa;
     }
@@ -60,5 +68,11 @@ public class Caixa {
         double media = tempo.getTempoAtendimento()/numeroAtendidos;
         return media;
     } 
-
+    
+    public void addCliente(Cliente c){
+        clientesAtendidos.add(c);
+        
+    }
 }
+
+

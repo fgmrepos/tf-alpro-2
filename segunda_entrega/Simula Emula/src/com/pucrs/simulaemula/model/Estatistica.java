@@ -7,6 +7,7 @@
 package com.pucrs.simulaemula.model;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  *
@@ -23,12 +24,11 @@ public class Estatistica {
         client = null;
         caixa = null;
     }
-    public int numeroDeAtendimentos(){
-        return caixa.getNumeroAtendidos();
+    public double numeroDeAtendimentos(){
+         return (caixa.getNumeroAtendidos() * 100);
     }
-    public double mediaAtendimento(){
-        double media = client.getTempoAtendimento() / caixa.getNumeroAtendidos();
-        return media;
+    public double tempoMedioAtendimento(){
+	return ((client.getTempoAtendimento() / caixa.getNumeroAtendidos()) * 100);
     }
     public double mediana(){
         int meio = (caixa.getNumeroAtendidos())/2;
@@ -48,4 +48,15 @@ public class Estatistica {
         numeroMinimo = Math.min(numeroMinimo, caixa.getNumeroAtendidos());
         return numeroMinimo;
     }  
+    
+    public double variancia(){
+        
+        double x1 = 1 / (double) caixa.clientesAtendidos.size() - 1;
+        double x2 = caixa.getSomaNumerosAtendidosAoQuadrado() - (Math.pow(caixa.getNumeroAtendidos(),2)/ Double.valueOf(caixa.clientesAtendidos.size()));
+        return x1 * x2;
+    }
+    
+    public double desvioPadrao(){
+        return Math.sqrt(variancia());
+    }
 }
