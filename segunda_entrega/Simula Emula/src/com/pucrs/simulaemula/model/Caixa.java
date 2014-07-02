@@ -49,11 +49,8 @@ public class Caixa {
     }
     
     public double getSomaNumerosAtendidosAoQuadrado(){
-      double total = 0;
-      for(int i = 0; i < clientesAtendidos.size(); i++){
-          total += Math.pow(clientesAtendidos.size(), 2);
-      }
-      return total;
+      return Math.pow(clientesAtendidos.size(), 2);
+      
     }
     public int getEtapa() {
         return this.etapa;
