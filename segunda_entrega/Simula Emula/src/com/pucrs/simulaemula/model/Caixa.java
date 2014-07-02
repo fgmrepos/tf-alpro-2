@@ -14,17 +14,14 @@ import java.util.ArrayList;
 public class Caixa {
 
     private Cliente clienteAtual;
-    private int numeroAtendidos;
     private int etapa;
     private Cliente tempo;
-
-        
-    public ArrayList<Cliente> clientesAtendidos = new ArrayList<Cliente>(); 
-
+    private ArrayList<Cliente> clientesAtendidos;
+    
     public Caixa() {
         clienteAtual = null;
-        numeroAtendidos = 0;
         tempo = null;
+        ArrayList<Cliente> clientesAtendidos = new ArrayList<Cliente>(); 
         
     }
     
@@ -35,7 +32,6 @@ public class Caixa {
     public Cliente dispensarClienteAtual() {
         Cliente c = clienteAtual;
         clienteAtual = null;
-        numeroAtendidos++;
         clientesAtendidos.add(c);
         return c;
     }
@@ -49,11 +45,15 @@ public class Caixa {
     }
 
     public int getNumeroAtendidos() {
-        return numeroAtendidos;
+        return clientesAtendidos.size();
     }
     
     public double getSomaNumerosAtendidosAoQuadrado(){
-      return Math.pow(numeroAtendidos, 2);
+      double total = 0;
+      for(int i = 0; i < clientesAtendidos.size(); i++){
+          total += Math.pow(clientesAtendidos.size(), 2);
+      }
+      return total;
     }
     public int getEtapa() {
         return this.etapa;
@@ -66,7 +66,7 @@ public class Caixa {
      /*Método criado para retornar tempo medio de atendimento por caixa*/
     public double getMediaAtendimento(){
         
-        double media = tempo.getTempoAtendimento()/numeroAtendidos;
+        double media = tempo.getTempoAtendimento()/clientesAtendidos.size();
         return media;
     } 
     
